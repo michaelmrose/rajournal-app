@@ -1,0 +1,43 @@
+@startuml
+
+entity "User" as user {
+  +id: UUID
+  --
+  name: String
+  username: String
+  password: String
+  email: String
+}
+
+entity "Journal Entry" as journal_entry {
+  +id: UUID
+  --
+  userID: UUID
+  date: Date
+  pain_level: Integer
+  stiffness_level: Integer
+  fatigue_level: Integer
+}
+
+entity "Notes" as notes {
+  +id: UUID
+  --
+  userID: UUID
+  date: Date [0..1]
+  content: String
+  timestamp: DateTime
+}
+
+entity "Life Events" as life_events {
+  +id: UUID
+  --
+  journalEntryID: UUID
+  event: String
+}
+
+user --o{ journal_entry : Has
+user --o{ notes : Has
+user --o{ life_events : Has
+journal_entry --o{ life_events : Has
+
+@enduml

@@ -1,0 +1,104 @@
+#+title: RA Journal
+
+* Description
+RA Journal: Your Personal Tracker for Rheumatoid Arthritis Management. Living with RA means navigating a complex landscape of symptoms like pain, stiffness, and fatigue. Our intuitive app allows you to journal these symptoms alongside life events to identify trends and triggers. By correlating changes such as reduced sleep quality with symptom flare-ups, RA Journal empowers you with insights to better manage your condition. Take control, gain awareness, and step into a healthier tomorrow
+
+
+* UI
+See UI.pdf for a semi interactive preview
+
+
+* Restful Routing Chart
+
+| Method | Endpoint                             | Description                                          |
+|--------+--------------------------------------+------------------------------------------------------|
+| GET    | /api/users                           | Fetch all users                                      |
+| POST   | /users                               | Create a new user                                    |
+| GET    | /api/users/:id                       | Fetch details of a specific user                     |
+| PUT    | /api/users/:id                       | Update a specific user                               |
+| DELETE | /api/users/:id                       | Delete a specific user                               |
+|--------+--------------------------------------+------------------------------------------------------|
+| GET    | /api/users/:id/journal_entries       | Fetch all journal entries for a user                 |
+| POST   | /api/users/:id/journal_entries       | Create a new journal entry for a user                |
+| GET    | /api/journal_entries/:id             | Fetch details of a specific journal entry            |
+| PUT    | /api/journal_entries/:id             | Update a specific journal entry                      |
+| DELETE | /api/journal_entries/:id             | Delete a specific journal entry                      |
+|--------+--------------------------------------+------------------------------------------------------|
+| GET    | /api/users/:id/notes                 | Fetch all notes for a user                           |
+| POST   | /api/users/:id/notes                 | Create a new note for a user                         |
+| GET    | /api/notes/:id                       | Fetch details of a specific note                     |
+| PUT    | /api/notes/:id                       | Update a specific note                               |
+| DELETE | /api/notes/:id                       | Delete a specific note                               |
+|--------+--------------------------------------+------------------------------------------------------|
+| GET    | /api/journal_entries/:id/life_events | Fetch all life events for a specific journal entry   |
+| POST   | /api/journal_entries/:id/life_events | Create a new life event for a specific journal entry |
+| GET    | /api/life_events/:id                 | Fetch details of a specific life event               |
+| PUT    | /api/life_events/:id                 | Update a specific life event                         |
+| DELETE | /api/life_events/:id                 | Delete a specific life event                         |
+
+
+* ERD
+[[file:ERD.png]]
+* User Stories
+** MVP
+- As a user I would like to be able to quickly on a single form that is easily used by touch even when my hands hurt journal about how I felt today including pain level, stiffness, fatigue, and sleep.
+- As a user I would like to be able to note important life events that effected my symptoms like diet, activity, changes in medication.
+- As a user I would like to see a list of the notes I had made.
+- As a user I would like to be able to create, edit, delete these notes
+- As a user I would like to see a list of common reputible resources where I can learn about my condition, treatment options, and connect with users like myself
+** Stretch
+- As a user I would like to see a graph of these observations in context of these events and identify trends.
+- As a user I would like to be able to search these notes by entering a search string
+- As a user I would like to see information from my google fit like steps, move minutes,
+- As a user I would like to be able to share a particular note to my social media
+
+* Technologies
+- JavaScript
+- HTML
+- CSS
+- Tailwind
+- React
+- MongoDB
+- Express
+- Heroku
+
+* Technical implimentation
+** MVP
+This app will be implimented using the MERN stack as a SPA that will provide data needed to render the following pages
+*** Today
+ - Enter details about how you are feeling today
+ - Note important events that happened today
+ - Add Notes
+*** History
+- Show a list of entries you can edit or delete
+*** Notes
+- Read Edit Create Notes
+*** Resources
+- Provide links to common resources where people can learn and connect with other users living with the same problems
+
+** Strech
+*** Add activity from the google fit API to today/history/graph
+See https://developers.google.com/fit
+*** Log in with ...
+Let users log in with android and apple authentication
+*** Search notes
+Search full text of notes
+*** Graph
+Show a graph of values taken from prior entries by week/month/year/all time
+
+** Icebox
+
+** Performance/offline functionality
+The implimentation will essentially fetch the mongo documents pertaining to the user with history graph and notes essentially just presenting data drawn from the same documents in a differerent format. Logically it may be desirable in the future to fetch more incrimentally or deploy the same functionality as PWA or phone app via react native that would allow it to work properly offline.
+
+**  Data Privacy
+Consider the idea of encrypting data client side with user passphrase and just pushing encrypted data to the server
+
+*** Upsides:
+Users don't have to be concerned with you monetizing/sharing/accidentally losing their data
+Trivial compliance with European privacy laws and requests to delete data
+
+*** Downsides
+Makes implimentation more complicated
+
+Users can't lose their passphrase without losing access to prior data. This ought to be partially miigated by saving your password to google etc making it harder to permenently lose data but in my experience people still manage this feat.
