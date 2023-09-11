@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 
 import { Flex, Text, Button, Box } from '@radix-ui/themes';
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
@@ -11,6 +11,7 @@ import { signUp } from '../../utilities/users-service';
 import "./style.css"
 
 export default function SignUpForm({ setUser }) {
+  const navigate = useNavigate()
   const [credentials, setCredentials] = useState({
     name: '',
     email: '',
@@ -34,6 +35,7 @@ export default function SignUpForm({ setUser }) {
       // in the payload of the JSON Web Token (JWT)
       const user = await signUp(formData);
       setUser(user);
+      navigate("/today")
     } catch {
       // An error occurred
       // Probably due to a duplicate email
