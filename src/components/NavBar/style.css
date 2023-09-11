@@ -326,3 +326,14 @@ p {
     opacity: 0;
   }
 }
+
+.navItem {
+  border: 2px black solid;
+  height: fit-content;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.selected {
+  background-color:cornflowerblue
+}

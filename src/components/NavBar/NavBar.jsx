@@ -22,45 +22,49 @@ export default function NavBar({ user, setUser }) {
     <NavigationMenu.Root className="NavigationMenuRoot">
       <NavigationMenu.List className="NavigationMenuList">
 
+<NavigationMenu.Item className="brandItem">
+    <NavigationMenu.Link className="NavigationMenuLink">
+      <Text weight="bold">RA Journal</Text>
+    </NavigationMenu.Link>
+</NavigationMenu.Item>
 
-<NavigationMenu.Item>
+<NavigationMenu.Item className="navItem">
   <Link to="/today">
     <NavigationMenu.Link className="NavigationMenuLink">
-      Today
+      <Text weight="bold">Today</Text>
     </NavigationMenu.Link>
   </Link>
 </NavigationMenu.Item>
 
 
 
-<NavigationMenu.Item>
+<NavigationMenu.Item className="navItem ">
   <Link to="/history">
     <NavigationMenu.Link className="NavigationMenuLink">
-      History
+      <Text weight="bold">History</Text>
     </NavigationMenu.Link>
   </Link>
 </NavigationMenu.Item>
-
-<NavigationMenu.Item>
+<NavigationMenu.Item className="navItem">
   <Link to="/notes">
     <NavigationMenu.Link className="NavigationMenuLink">
-      Notes
+      <Text weight="bold">Notes</Text>
     </NavigationMenu.Link>
   </Link>
 </NavigationMenu.Item>
 
 
-<NavigationMenu.Item>
+<NavigationMenu.Item className="navItem">
   <Link to="/graph">
     <NavigationMenu.Link className="NavigationMenuLink">
-      Graph
+      <Text weight="bold">Graph</Text>
     </NavigationMenu.Link>
   </Link>
 </NavigationMenu.Item>
 
-<NavigationMenu.Item onClick={handleLogOut}>
+<NavigationMenu.Item onClick={handleLogOut} className="logoutMenu">
     <NavigationMenu.Link className="NavigationMenuLink">
-      Logout
+      <Text weight="bold">Logout</Text>
     </NavigationMenu.Link>
 </NavigationMenu.Item>
 
