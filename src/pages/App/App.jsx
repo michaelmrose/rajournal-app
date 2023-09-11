@@ -25,7 +25,7 @@ export default function App() {
               <div className='stage'>
                 <NavBar user={user} setUser={setUser} mb="5" />
                 <Routes>
-                  <Route path="/today" element={<TodayPage />} />
+                  <Route path="/today" element={<TodayPage user={user} />} />
                   <Route path="/history" element={<HistoryPage />} />
                   <Route path="/notes" element={<NotesPage />} />
                   <Route path="/graph" element={<GraphPage />} />
