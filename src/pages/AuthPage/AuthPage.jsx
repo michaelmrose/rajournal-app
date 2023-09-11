@@ -3,7 +3,7 @@ import SignUpForm from '../../components/SignUpForm/SignUpForm';
 import LoginForm from '../../components/LoginForm/LoginForm';
 
 
-import { Flex, Text, Button, Box } from '@radix-ui/themes';
+import { Flex, Text, Button, Box, Card } from '@radix-ui/themes';
 
 import "./style.css"
 
@@ -14,7 +14,8 @@ export default function AuthPage({ setUser }) {
 
   return (
     <main>
-    <Flex direction="column" align="center" justify="center">
+    <Flex width="10" direction="column" align="center" justify="center">
+    <Card>
       <h1>Sign In or Sign Up!</h1>
 
       {showSignUp ?
@@ -34,6 +35,7 @@ export default function AuthPage({ setUser }) {
 
       }
 
+</Card>
 </Flex>
     </main>
   );
