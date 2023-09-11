@@ -97,12 +97,12 @@ export default function SignUpForm({ setUser }) {
       </Form.Control>
     </Form.Field>
     <Form.Submit asChild>
-      <Button type="submit" className="Button" style={{ marginTop: 10 }}>
+      <Button type="submit" className="Button" style={{ marginTop: 10}}>
         Sign Up
       </Button>
     </Form.Submit>
   </Form.Root>
-    <p className="error-message">&nbsp;{error}</p>
+    <p  className="error-message">&nbsp;{error}</p>
 </>
   );
 }

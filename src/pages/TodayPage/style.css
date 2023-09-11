@@ -1,0 +1,8 @@
+.todayBox {
+  background-color: white;
+  padding-top: 20px 20px 20px 20px;
+  width: 95vw;
+  max-width: 800px;
+  margin: 10px;
+  border-radius: 8px;
+}

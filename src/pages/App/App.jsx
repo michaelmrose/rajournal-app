@@ -19,24 +19,22 @@ export default function App() {
   const [user, setUser] = useState(getUser());
 
   return (
-    <Theme  appearance='dark' hasBackground="true" colorScheme="dark" accentColor='violet' radius="large" scaling='95%'>
-        < Box style={{backgroundColor:"white"}}>
+    <Theme  appearance='dark' hasBackground="true"  accentColor='violet' radius="large" scaling='95%'>
           <main className="App">
             {user ?
-              <>
-                <NavBar user={user} setUser={setUser} />
+              <div className='stage'>
+                <NavBar user={user} setUser={setUser} mb="5" />
                 <Routes>
                   <Route path="/today" element={<TodayPage />} />
                   <Route path="/history" element={<HistoryPage />} />
                   <Route path="/notes" element={<NotesPage />} />
                   <Route path="/graph" element={<GraphPage />} />
                 </Routes>
-              </>
+              </div>
               :
               <AuthPage setUser={setUser} />
             }
           </main>
-        </Box>
     </Theme>
   );
 }
