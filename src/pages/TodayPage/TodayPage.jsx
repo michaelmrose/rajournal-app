@@ -39,7 +39,7 @@ export default function TodayPage(props) {
             </Form.Message>
           </div>
           <Form.Control asChild>
-            <ButtonRadioGroup options={["Poorly", "OK", "Well"]} />
+            <ButtonRadioGroup options={["Poorly", "OK", "Well"]} value={state.sleep} onChange={handleChange}/>
 
 
           </Form.Control>

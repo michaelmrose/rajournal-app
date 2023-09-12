@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import './style.css';
 
-const ButtonRadioGroup = ({options}) => {
-  const [selected, setSelected] = useState(null);
-
+const ButtonRadioGroup = ({ options, value, onChange, name }) => {
   return (
     <div>
       <div className="button-group">
         {options.map((option, index) => (
           <button
             key={index}
-            className={`btn ${selected === option ? 'selected' : ''}`}
-            onClick={() => setSelected(option)}
+            className={`btn ${value === option ? 'selected' : ''}`}
+            onClick={(evt) => {
+                evt.preventDefault()
+                onChange({ target: { name, value: option } })}}
           >
             {option}
           </button>
