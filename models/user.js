@@ -10,23 +10,53 @@ const journalEntrySchema = new Schema({
       required: true,
       default: Date.now()
     },
-    painLevel: {
+    morningPainLevel: {
       type: Number,
       required: true,
       min: 1,
       max: 10,
     },
-    stiffnessLevel: {
+    morningStiffnessLevel: {
       type: Number,
       required: true,
       min: 1,
       max: 10,
     },
-    fatigueLevel: {
+    morningFatigueLevel: {
       type: Number,
       required: true,
       min: 1,
       max: 10,
+    },
+    dayPainLevel: {
+      type: Number,
+      required: true,
+      min: 1,
+      max: 10,
+    },
+    dayStiffnessLevel: {
+      type: Number,
+      required: true,
+      min: 1,
+      max: 10,
+    },
+    dayFatigueLevel: {
+      type: Number,
+      required: true,
+      min: 1,
+      max: 10,
+    },
+    qualityOfSleep: {
+      type: String,
+      required: true,
+      enum: ["Poorly", "OK", "Well"]
+
+    },
+    hoursOfSleep: {
+      type: Number,
+      required: true,
+      min: 0,
+      max: 12,
     },
 })
 

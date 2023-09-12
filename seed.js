@@ -27,9 +27,14 @@ async function seedDatabase() {
 
       journalEntries.push({
         creationDate: date,
-        painLevel: randomBetween(1, 10),
-        stiffnessLevel: randomBetween(1, 10),
-        fatigueLevel: randomBetween(1, 10),
+        morningPainLevel: randomBetween(1, 10),
+        morningStiffnessLevel: randomBetween(1, 10),
+        morningFatigueLevel: randomBetween(1, 10),
+        dayPainLevel: randomBetween(1, 10),
+        dayStiffnessLevel: randomBetween(1, 10),
+        dayFatigueLevel: randomBetween(1, 10),
+        qualityOfSleep: "OK",
+        hoursOfSleep: 8,
       });
 
       lifeEvents.push({
