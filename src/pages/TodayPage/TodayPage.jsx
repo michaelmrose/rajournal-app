@@ -40,12 +40,64 @@ export default function TodayPage(props) {
   function handleEventsChange(newEvents) {
     setState({ ...state, eventList: newEvents });
 }
+const handleSubmit = async (e) => {
+  alert("handling submit")
+  e.preventDefault();
+  
+  const userId = props.user._id
+
+  // Prepare the journal entry data
+  const journalEntry = {
+    creationDate: new Date(),
+    painLevel: state.painLevel,
+    stiffnessLevel: state.stiffnessLevel,
+    fatigueLevel: state.fatigueLevel,
+  };
+
+  try {
+    // Create the journal entry first
+    const journalResponse = await sendRequest(`/api/users/${userId}/journalEntries`, 'POST', journalEntry);
+    
+    if (journalResponse && journalResponse._id) {
+      console.log('Journal entry created successfully');
+      
+      const journalId = journalResponse._id;
+      
+      // Prepare the life events data
+      const lifeEvents = state.events.map((event) => ({
+        date: new Date(),
+        event: event.title,
+      }));
+
+      // Create life events associated with the journal entry
+      await sendRequest(`/api/journalEntries/${journalId}/lifeEvents`, 'POST', lifeEvents);
+      console.log('Life events created successfully');
+
+      // Prepare the note data
+      const note = {
+        creationDate: new Date(),
+        contents: state.note,
+      };
+
+      // Create the note
+      await sendRequest(`/api/users/${userId}/notes`, 'POST', note);
+      console.log('Note created successfully');
+
+      // Reset the form state or navigate the user to a different page
+
+    } else {
+      console.log('Error creating journal entry');
+    }
+  } catch (error) {
+    console.log('There was a problem with the network request', error);
+  }
+};
 
   return (
     <Flex align="center" justify="center" className="todayBox" direction="column">
       <h1 style={{ color: "Indigo" }}>Today</h1>
 
-      <Form.Root className="FormRoot">
+      <Form.Root className="FormRoot" onSubmit={handleSubmit}>
 
 
         <Form.Field className="FormField" name="sleep">
@@ -273,7 +325,7 @@ export default function TodayPage(props) {
 
 
         <Form.Submit asChild>
-          <Button my="5" className="Button" style={{ marginTop: 10 }}>
+          <Button  my="5" className="Button" style={{ marginTop: 10 }}>
             Save
           </Button>
         </Form.Submit>

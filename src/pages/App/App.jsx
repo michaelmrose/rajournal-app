@@ -19,7 +19,6 @@ export default function App() {
   const [user, setUser] = useState(getUser());
 
   return (
-    <Theme  appearance='dark' hasBackground="true"  accentColor='violet' radius="large" scaling='95%'>
           <main className="App">
             {user ?
               <div className='stage'>
@@ -35,6 +34,5 @@ export default function App() {
               <AuthPage setUser={setUser} />
             }
           </main>
-    </Theme>
   );
 }
