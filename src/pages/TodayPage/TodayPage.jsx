@@ -41,7 +41,6 @@ export default function TodayPage(props) {
     setState({ ...state, eventList: newEvents });
 }
 const handleSubmit = async (e) => {
-  alert("handling submit")
   e.preventDefault();
   
   const userId = props.user._id
