@@ -339,3 +339,6 @@ p {
 .selected {
   background-color:cornflowerblue
 }
+a {
+  text-decoration: none;
+}
