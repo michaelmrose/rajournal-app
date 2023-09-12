@@ -10,7 +10,18 @@ import './style.css';
 import sendRequest from '../../utilities/send-request';
 import ButtonRadioGroup from '../../components/ButtonRadioGroup/ButtonRadioGroup';
 
+
 export default function TodayPage(props) {
+  const [error, setError] = useState('');
+  const [state, setState] = useState({
+
+  })
+
+  function handleChange(evt) {
+    setState({ ...state, [evt.target.name]: evt.target.value });
+    setError('');
+  }
+
   return (
     <Flex align="center" justify="center" className="todayBox" direction="column">
       <h1 style={{ color: "Indigo" }}>Today Page</h1>
