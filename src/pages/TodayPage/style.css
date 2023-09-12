@@ -1,3 +1,98 @@
+@import '@radix-ui/colors/black-alpha.css';
+@import '@radix-ui/colors/violet.css';
+@import '@radix-ui/colors/mauve.css';
+
+/* reset */
+input,
+textarea,
+button {
+  all: unset;
+  box-sizing: border-box;
+}
+
+.FormRoot {
+  width: 260px;
+}
+
+.FormField {
+  display: grid;
+  margin-bottom: 10px;
+}
+
+.FormLabel {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 35px;
+  color: violet;
+}
+
+.FormMessage {
+  font-size: 13px;
+  color: crimson;
+  opacity: 0.8;
+}
+
+.Input,
+.Textarea {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+
+  font-size: 15px;
+  color: white;
+  background-color: var(--black-a5);
+  box-shadow: 0 0 0 1px var(--black-a9);
+}
+.Input:hover,
+.Textarea:hover {
+  box-shadow: 0 0 0 1px black;
+}
+.Input:focus,
+.Textarea:focus {
+  box-shadow: 0 0 0 2px black;
+}
+.Input::selection,
+.Textarea::selection {
+  background-color: var(--black-a9);
+  color: white;
+}
+
+.Input {
+  padding: 0 10px;
+  height: 35px;
+  line-height: 1;
+}
+
+.Textarea {
+  resize: none;
+  padding: 10px;
+}
+
+.Button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  padding: 0 15px;
+  font-size: 15px;
+  line-height: 1;
+  font-weight: 500;
+  height: 35px;
+  width: 100%;
+
+  background-color: white;
+  color: var(--violet-11);
+  box-shadow: 0 2px 10px var(--black-a7);
+}
+.Button:hover {
+  background-color: var(--mauve-3);
+}
+.Button:focus {
+  box-shadow: 0 0 0 2px black;
+}
+
 .todayBox {
   background-color: white;
   padding-top: 20px 20px 20px 20px;
@@ -5,4 +100,90 @@
   max-width: 800px;
   margin: 10px;
   border-radius: 8px;
+}
+
+.RadioGroupRoot {
+  display: flex;
+  gap: 10px;
+}
+
+.RadioGroupItem {
+  background-color: white;
+  width: 25px;
+  height: 25px;
+  border-radius: 0%;
+  box-shadow: 0 2px 10px var(--black-a7);
+}
+.RadioGroupItem:hover {
+  background-color: var(--violet-3);
+}
+.RadioGroupItem:focus {
+  box-shadow: 0 0 0 2px black;
+}
+
+.RadioGroupIndicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.RadioGroupIndicator::after {
+  content: '';
+  display: block;
+  width: 25px;
+  height:25px;
+  border-radius: 0%;
+  background-color: var(--violet-11);
+}
+
+.Label {
+  color: light indigo;
+  font-size: 15px;
+  line-height: 1;
+  padding-left: 15px;
+}
+
+.SliderRoot {
+  position: relative;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  touch-action: none;
+  width: 200px;
+  height: 20px;
+}
+
+.SliderTrack {
+  background-color: var(--black-a10);
+  position: relative;
+  flex-grow: 1;
+  border-radius: 9999px;
+  height: 3px;
+}
+
+.SliderRange {
+  position: absolute;
+  background-color: white;
+  background-color: var(--violet-11);
+  border-radius: 9999px;
+  height: 100%;
+}
+
+.SliderThumb {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  background-color: var(--violet-11);
+  box-shadow: 0 2px 10px var(--black-11);
+  border-radius: 10px;
+}
+.SliderThumb:hover {
+  background-color: var(--violet-3);
+}
+.SliderThumb:focus {
+  outline: none;
+  box-shadow: 0 0 0 5px var(--black-a8);
 }
