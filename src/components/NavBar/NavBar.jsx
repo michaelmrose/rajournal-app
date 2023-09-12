@@ -24,7 +24,7 @@ export default function NavBar({ user, setUser }) {
 
 <NavigationMenu.Item className="brandItem">
     <NavigationMenu.Link className="NavigationMenuLink">
-      <Text weight="bold">RA Journal</Text>
+      <Text weight="bold">RAJ</Text>
     </NavigationMenu.Link>
 </NavigationMenu.Item>
 
@@ -45,13 +45,13 @@ export default function NavBar({ user, setUser }) {
     </NavigationMenu.Link>
   </Link>
 </NavigationMenu.Item>
-<NavigationMenu.Item className="navItem">
+{/* <NavigationMenu.Item className="navItem">
   <Link to="/notes">
     <NavigationMenu.Link className="NavigationMenuLink">
       <Text weight="bold">Notes</Text>
     </NavigationMenu.Link>
   </Link>
-</NavigationMenu.Item>
+</NavigationMenu.Item> */}
 
 
 <NavigationMenu.Item className="navItem">

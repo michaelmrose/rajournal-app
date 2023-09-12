@@ -21,7 +21,7 @@ p {
 .NavigationMenuList {
   display: flex;
   justify-content: space-around;
-  width: 100vw;
+  width: 95vw;
   max-width: 600px;
   background-color: white;
   padding: 4px;
@@ -33,13 +33,15 @@ p {
 
 .NavigationMenuTrigger,
 .NavigationMenuLink {
-  padding: 8px 12px;
+  width: 13vw;
+  padding-left: 1.3vw;
+  max-width: 100px;
   outline: none;
   user-select: none;
   font-weight: 500;
   line-height: 1;
   border-radius: 4px;
-  font-size: 16px!important;
+  font-size: 12px!important;
   color: var(--violet-11);
 }
 .NavigationMenuTrigger:focus,
