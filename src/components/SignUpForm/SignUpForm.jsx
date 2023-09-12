@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Flex, Text, Button, Box } from '@radix-ui/themes';
+import { Flex, Text, Button, Box, Card } from '@radix-ui/themes';
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import * as Form from '@radix-ui/react-form';
 
