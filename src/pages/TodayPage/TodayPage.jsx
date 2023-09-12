@@ -5,6 +5,7 @@ import { Flex, Text, Button, Box } from '@radix-ui/themes';
 import * as Form from '@radix-ui/react-form';
 import * as RadioGroup from '@radix-ui/react-radio-group';
 import * as Slider from '@radix-ui/react-slider';
+import EventList from '../../components/EventList/EventList';
 
 import './style.css';
 import sendRequest from '../../utilities/send-request';
@@ -14,7 +15,17 @@ import ButtonRadioGroup from '../../components/ButtonRadioGroup/ButtonRadioGroup
 export default function TodayPage(props) {
   const [error, setError] = useState('');
   const [state, setState] = useState({
-
+    sleep: "OK",
+    hoursOfSleep: [8],
+    note: "",
+    morningPain: [5],
+    morningStiffness: [5],
+    morningFatigue: [5],
+    dayPain: [5],
+    dayStiffness: [5],
+    dayFatigue: [5],
+    dayActivity: [5],
+    eventList: [],
   })
 
   function handleChange(evt) {
@@ -22,9 +33,18 @@ export default function TodayPage(props) {
     setError('');
   }
 
+  function handleSliderChange(name, newValue) {
+    setState({ ...state, [name]: newValue });
+  }
+
+  function handleEventsChange(newEvents) {
+    setState({ ...state, eventList: newEvents });
+}
+
   return (
     <Flex align="center" justify="center" className="todayBox" direction="column">
-      <h1 style={{ color: "Indigo" }}>Today Page</h1>
+      <h1 style={{ color: "Indigo" }}>Today</h1>
+
       <Form.Root className="FormRoot">
 
 
@@ -39,21 +59,50 @@ export default function TodayPage(props) {
             </Form.Message>
           </div>
           <Form.Control asChild>
-            <ButtonRadioGroup options={["Poorly", "OK", "Well"]} value={state.sleep} onChange={handleChange}/>
+            <ButtonRadioGroup options={["Poorly", "OK", "Well"]} value={state.sleep} onChange={handleChange} />
 
 
           </Form.Control>
         </Form.Field>
 
-        <Text>When I Woke Up I Felt</Text>
+        <Form.Field className="FormField" name="hoursOfSleep">
+          <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
+            <Form.Label className="FormLabel">Hours of Sleep</Form.Label>
+            <span>{state.hoursOfSleep}</span>
+          </div>
+          <Form.Control asChild>
+            <Slider.Root
+              className="SliderRoot"
+              value={state.hoursOfSleep}
+              onValueChange={(newValue) => handleSliderChange('hoursOfSleep', newValue)}
+              max={12}
+              step={1}>
+              <Slider.Track className="SliderTrack">
+                <Slider.Range className="SliderRange" />
+              </Slider.Track>
+              <Slider.Thumb className="SliderThumb" aria-label="Volume" />
+            </Slider.Root>
+
+          </Form.Control>
+        </Form.Field>
+
+
+        <h2>When I Woke Up I Felt</h2>
         <br />
 
         <Form.Field className="FormField" name="morningPain">
           <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
             <Form.Label className="FormLabel">Pain</Form.Label>
+            <span>{state.morningPain[0]}</span>
           </div>
           <Form.Control asChild>
-            <Slider.Root className="SliderRoot" defaultValue={[1]} max={10} step={1}>
+            <Slider.Root
+              className="SliderRoot"
+              defaultValue={[1]}
+              value={state.morningPain}
+              onValueChange={(newValue) => handleSliderChange('morningPain', newValue)}
+              max={10}
+              step={1}>
               <Slider.Track className="SliderTrack">
                 <Slider.Range className="SliderRange" />
               </Slider.Track>
@@ -67,9 +116,15 @@ export default function TodayPage(props) {
         <Form.Field className="FormField" name="morningStiffness">
           <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
             <Form.Label className="FormLabel">Stiffness</Form.Label>
+            <span>{state.morningStiffness[0]}</span>
           </div>
           <Form.Control asChild>
-            <Slider.Root className="SliderRoot" defaultValue={[1]} max={10} step={1}>
+            <Slider.Root
+              className="SliderRoot"
+              value={state.morningStiffness}
+              onValueChange={(newValue) => handleSliderChange('morningStiffness', newValue)}
+              max={10}
+              step={1}>
               <Slider.Track className="SliderTrack">
                 <Slider.Range className="SliderRange" />
               </Slider.Track>
@@ -83,9 +138,15 @@ export default function TodayPage(props) {
         <Form.Field className="FormField" name="morningFatigue">
           <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
             <Form.Label className="FormLabel">Fatigue</Form.Label>
+            <span>{state.morningFatigue[0]}</span>
           </div>
           <Form.Control asChild>
-            <Slider.Root className="SliderRoot" defaultValue={[1]} max={10} step={1}>
+            <Slider.Root
+              className="SliderRoot"
+              value={state.morningFatigue}
+              onValueChange={(newValue) => handleSliderChange('morningFatigue', newValue)}
+              max={10}
+              step={1}>
               <Slider.Track className="SliderTrack">
                 <Slider.Range className="SliderRange" />
               </Slider.Track>
@@ -95,15 +156,21 @@ export default function TodayPage(props) {
           </Form.Control>
         </Form.Field>
 
-        <Text>Throughout the Day I felt</Text>
+        <h2>Throughout the Day I felt</h2>
         <br />
 
         <Form.Field className="FormField" name="dayPain">
           <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
             <Form.Label className="FormLabel">Pain</Form.Label>
+            <span>{state.dayPain[0]}</span>
           </div>
           <Form.Control asChild>
-            <Slider.Root className="SliderRoot" defaultValue={[1]} max={10} step={1}>
+            <Slider.Root
+              className="SliderRoot"
+              value={state.dayPain}
+              onValueChange={(newValue) => handleSliderChange('dayPain', newValue)}
+              max={10}
+              step={1}>
               <Slider.Track className="SliderTrack">
                 <Slider.Range className="SliderRange" />
               </Slider.Track>
@@ -117,9 +184,15 @@ export default function TodayPage(props) {
         <Form.Field className="FormField" name="dayStiffness">
           <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
             <Form.Label className="FormLabel">Stiffness</Form.Label>
+            <span>{state.dayStiffness[0]}</span>
           </div>
           <Form.Control asChild>
-            <Slider.Root className="SliderRoot" defaultValue={[1]} max={10} step={1}>
+            <Slider.Root
+              className="SliderRoot"
+              value={state.dayStiffness}
+              onValueChange={(newValue) => handleSliderChange('dayStiffness', newValue)}
+              max={10}
+              step={1}>
               <Slider.Track className="SliderTrack">
                 <Slider.Range className="SliderRange" />
               </Slider.Track>
@@ -133,9 +206,15 @@ export default function TodayPage(props) {
         <Form.Field className="FormField" name="dayFatigue">
           <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
             <Form.Label className="FormLabel">Fatigue</Form.Label>
+            <span>{state.dayFatigue[0]}</span>
           </div>
           <Form.Control asChild>
-            <Slider.Root className="SliderRoot" defaultValue={[1]} max={10} step={1}>
+            <Slider.Root
+              className="SliderRoot"
+              value={state.dayFatigue}
+              onValueChange={(newValue) => handleSliderChange('dayFatigue', newValue)}
+              max={10}
+              step={1}>
               <Slider.Track className="SliderTrack">
                 <Slider.Range className="SliderRange" />
               </Slider.Track>
@@ -145,16 +224,22 @@ export default function TodayPage(props) {
           </Form.Control>
         </Form.Field>
 
-        <Text>I was able to do the things I needed to do despite my symptoms</Text>
+        <h2>I was able to do the things I needed to do despite my symptoms</h2>
         <br />
 
 
         <Form.Field className="FormField" name="dayActivity">
           <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
             <Form.Label className="FormLabel">Activity</Form.Label>
+            <span>{state.dayActivity[0]}</span>
           </div>
           <Form.Control asChild>
-            <Slider.Root className="SliderRoot" defaultValue={[1]} max={10} step={1}>
+            <Slider.Root
+              className="SliderRoot"
+              value={state.dayActivity}
+              onValueChange={(newValue) => handleSliderChange('dayActivity', newValue)}
+              max={10}
+              step={1}>
               <Slider.Track className="SliderTrack">
                 <Slider.Range className="SliderRange" />
               </Slider.Track>
@@ -164,15 +249,29 @@ export default function TodayPage(props) {
           </Form.Control>
         </Form.Field>
 
+        <Form.Field className="FormField" name="events">
+          <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
+            <Form.Label className="FormLabel">Today's Events</Form.Label>
+          </div>
+          <Form.Control asChild>
+            <EventList
+              eventList={state.eventList}
+              onChange={handleEventsChange}
+            />
+          </Form.Control>
+        </Form.Field>
 
         <Form.Field className="FormField" name="note">
           <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
             <Form.Label className="FormLabel">Note</Form.Label>
           </div>
           <Form.Control asChild>
-            <textarea className="Textarea" />
+            <textarea className="Textarea" value={state.note} onChange={handleChange} />
           </Form.Control>
         </Form.Field>
+
+
+
         <Form.Submit asChild>
           <Button my="5" className="Button" style={{ marginTop: 10 }}>
             Save
