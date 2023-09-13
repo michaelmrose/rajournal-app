@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Theme, ThemePanel, Box } from '@radix-ui/themes';
 import './index.css';
 import App from './pages/App/App';
+import '@radix-ui/themes/styles.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

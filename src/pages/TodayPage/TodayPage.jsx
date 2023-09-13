@@ -18,13 +18,13 @@ export default function TodayPage(props) {
     sleep: "OK",
     hoursOfSleep: [8],
     note: "",
-    morningPain: [5],
-    morningStiffness: [5],
-    morningFatigue: [5],
-    dayPain: [5],
-    dayStiffness: [5],
-    dayFatigue: [5],
-    dayActivity: [5],
+    morningPainLevel: [5],
+    morningStiffnessLevel: [5],
+    morningFatigueLevel: [5],
+    dayPainLevel: [5],
+    dayStiffnessLevel: [5],
+    dayFatigueLevel: [5],
+    dayActivityLevel: [5],
     eventList: [],
   })
 
@@ -40,30 +40,35 @@ export default function TodayPage(props) {
   function handleEventsChange(newEvents) {
     setState({ ...state, eventList: newEvents });
 }
-const handleSubmit = async (e) => {
-  e.preventDefault();
+async function handleSubmit(evt) {
+  evt.preventDefault();
   
   const userId = props.user._id
 
-  // Prepare the journal entry data
+  // Prepare the journal entry data based on updated schema names
   const journalEntry = {
     creationDate: new Date(),
-    painLevel: state.painLevel,
-    stiffnessLevel: state.stiffnessLevel,
-    fatigueLevel: state.fatigueLevel,
+    morningPainLevel: state.morningPainLevel,
+    morningStiffnessLevel: state.morningStiffnessLevel,
+    morningFatigueLevel: state.morningFatigueLevel,
+    dayPainLevel: state.dayPainLevel,
+    dayStiffnessLevel: state.dayStiffnessLevel,
+    dayFatigueLevel: state.dayFatigueLevel,
+    qualityOfSleep: state.qualityOfSleep,
+    hoursOfSleep: state.hoursOfSleep,
   };
-
   try {
     // Create the journal entry first
+    alert(`/api/users/${userId}`)
     const journalResponse = await sendRequest(`/api/users/${userId}/journalEntries`, 'POST', journalEntry);
-    
+alert(journalResponse)
     if (journalResponse && journalResponse._id) {
       console.log('Journal entry created successfully');
       
       const journalId = journalResponse._id;
       
       // Prepare the life events data
-      const lifeEvents = state.events.map((event) => ({
+      const lifeEvents = state.eventList.map((event) => ({
         date: new Date(),
         event: event.title,
       }));
@@ -141,17 +146,17 @@ const handleSubmit = async (e) => {
         <h2>When I Woke Up I Felt</h2>
         <br />
 
-        <Form.Field className="FormField" name="morningPain">
+        <Form.Field className="FormField" name="morningPainLevel">
           <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
             <Form.Label className="FormLabel">Pain</Form.Label>
-            <span>{state.morningPain[0]}</span>
+            <span>{state.morningPainLevel[0]}</span>
           </div>
           <Form.Control asChild>
             <Slider.Root
               className="SliderRoot"
               defaultValue={[1]}
-              value={state.morningPain}
-              onValueChange={(newValue) => handleSliderChange('morningPain', newValue)}
+              value={state.morningPainLevel}
+              onValueChange={(newValue) => handleSliderChange('morningPainLevel', newValue)}
               max={10}
               step={1}>
               <Slider.Track className="SliderTrack">
@@ -164,44 +169,44 @@ const handleSubmit = async (e) => {
         </Form.Field>
 
 
-        <Form.Field className="FormField" name="morningStiffness">
+        <Form.Field className="FormField" name="morningStiffnessLevel">
           <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
             <Form.Label className="FormLabel">Stiffness</Form.Label>
-            <span>{state.morningStiffness[0]}</span>
+            <span>{state.morningStiffnessLevel[0]}</span>
           </div>
           <Form.Control asChild>
             <Slider.Root
               className="SliderRoot"
-              value={state.morningStiffness}
-              onValueChange={(newValue) => handleSliderChange('morningStiffness', newValue)}
+              value={state.morningStiffnessLevel}
+              onValueChange={(newValue) => handleSliderChange('morningStiffnessLevel', newValue)}
               max={10}
               step={1}>
               <Slider.Track className="SliderTrack">
                 <Slider.Range className="SliderRange" />
               </Slider.Track>
-              <Slider.Thumb className="SliderThumb" aria-label="Volume" />
+              <Slider.Thumb className="SliderThumb" aria-label="Morning Stiffness" />
             </Slider.Root>
 
           </Form.Control>
         </Form.Field>
 
 
-        <Form.Field className="FormField" name="morningFatigue">
+        <Form.Field className="FormField" name="morningFatigueLevel">
           <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
             <Form.Label className="FormLabel">Fatigue</Form.Label>
-            <span>{state.morningFatigue[0]}</span>
+            <span>{state.morningFatigueLevel[0]}</span>
           </div>
           <Form.Control asChild>
             <Slider.Root
               className="SliderRoot"
-              value={state.morningFatigue}
-              onValueChange={(newValue) => handleSliderChange('morningFatigue', newValue)}
+              value={state.morningFatigueLevel}
+              onValueChange={(newValue) => handleSliderChange('morningFatigueLevel', newValue)}
               max={10}
               step={1}>
               <Slider.Track className="SliderTrack">
                 <Slider.Range className="SliderRange" />
               </Slider.Track>
-              <Slider.Thumb className="SliderThumb" aria-label="Volume" />
+              <Slider.Thumb className="SliderThumb" aria-label="Morning Fatigue" />
             </Slider.Root>
 
           </Form.Control>
@@ -210,66 +215,66 @@ const handleSubmit = async (e) => {
         <h2>Throughout the Day I felt</h2>
         <br />
 
-        <Form.Field className="FormField" name="dayPain">
+        <Form.Field className="FormField" name="dayPainLevel">
           <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
             <Form.Label className="FormLabel">Pain</Form.Label>
-            <span>{state.dayPain[0]}</span>
+            <span>{state.dayPainLevel[0]}</span>
           </div>
           <Form.Control asChild>
             <Slider.Root
               className="SliderRoot"
-              value={state.dayPain}
-              onValueChange={(newValue) => handleSliderChange('dayPain', newValue)}
+              value={state.dayPainLevel}
+              onValueChange={(newValue) => handleSliderChange('dayPainLevel', newValue)}
               max={10}
               step={1}>
               <Slider.Track className="SliderTrack">
                 <Slider.Range className="SliderRange" />
               </Slider.Track>
-              <Slider.Thumb className="SliderThumb" aria-label="Volume" />
+              <Slider.Thumb className="SliderThumb" aria-label="Day Pain" />
             </Slider.Root>
 
           </Form.Control>
         </Form.Field>
 
 
-        <Form.Field className="FormField" name="dayStiffness">
+        <Form.Field className="FormField" name="dayStiffnessLevel">
           <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
             <Form.Label className="FormLabel">Stiffness</Form.Label>
-            <span>{state.dayStiffness[0]}</span>
+            <span>{state.dayStiffnessLevel[0]}</span>
           </div>
           <Form.Control asChild>
             <Slider.Root
               className="SliderRoot"
-              value={state.dayStiffness}
-              onValueChange={(newValue) => handleSliderChange('dayStiffness', newValue)}
+              value={state.dayStiffnessLevel}
+              onValueChange={(newValue) => handleSliderChange('dayStiffnessLevel', newValue)}
               max={10}
               step={1}>
               <Slider.Track className="SliderTrack">
                 <Slider.Range className="SliderRange" />
               </Slider.Track>
-              <Slider.Thumb className="SliderThumb" aria-label="Volume" />
+              <Slider.Thumb className="SliderThumb" aria-label="Day Stiffness" />
             </Slider.Root>
 
           </Form.Control>
         </Form.Field>
 
 
-        <Form.Field className="FormField" name="dayFatigue">
+        <Form.Field className="FormField" name="dayFatigueLevel">
           <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
             <Form.Label className="FormLabel">Fatigue</Form.Label>
-            <span>{state.dayFatigue[0]}</span>
+            <span>{state.dayFatigueLevel[0]}</span>
           </div>
           <Form.Control asChild>
             <Slider.Root
               className="SliderRoot"
-              value={state.dayFatigue}
-              onValueChange={(newValue) => handleSliderChange('dayFatigue', newValue)}
+              value={state.dayFatigueLevel}
+              onValueChange={(newValue) => handleSliderChange('dayFatigueLevel', newValue)}
               max={10}
               step={1}>
               <Slider.Track className="SliderTrack">
                 <Slider.Range className="SliderRange" />
               </Slider.Track>
-              <Slider.Thumb className="SliderThumb" aria-label="Volume" />
+              <Slider.Thumb className="SliderThumb" aria-label="Day Fatigue" />
             </Slider.Root>
 
           </Form.Control>
@@ -279,28 +284,28 @@ const handleSubmit = async (e) => {
         <br />
 
 
-        <Form.Field className="FormField" name="dayActivity">
+        <Form.Field className="FormField" name="dayActivityLevel">
           <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
             <Form.Label className="FormLabel">Activity</Form.Label>
-            <span>{state.dayActivity[0]}</span>
+            <span>{state.dayActivityLevel[0]}</span>
           </div>
           <Form.Control asChild>
             <Slider.Root
               className="SliderRoot"
-              value={state.dayActivity}
-              onValueChange={(newValue) => handleSliderChange('dayActivity', newValue)}
+              value={state.dayActivityLevel}
+              onValueChange={(newValue) => handleSliderChange('dayActivityLevel', newValue)}
               max={10}
               step={1}>
               <Slider.Track className="SliderTrack">
                 <Slider.Range className="SliderRange" />
               </Slider.Track>
-              <Slider.Thumb className="SliderThumb" aria-label="Volume" />
+              <Slider.Thumb className="SliderThumb" aria-label="Activity Level" />
             </Slider.Root>
 
           </Form.Control>
         </Form.Field>
 
-        <Form.Field className="FormField" name="events">
+        <Form.Field className="FormField" name="eventList">
           <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
             <Form.Label className="FormLabel">Today's Events</Form.Label>
           </div>
