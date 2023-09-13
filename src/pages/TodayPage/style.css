@@ -16,14 +16,16 @@ button {
 
 .FormField {
   display: grid;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .FormLabel {
-  font-size: 15px;
+  font-size: 20px;
   font-weight: 500;
   line-height: 35px;
   color: #e90bf0;
+  margin-top: -3px;
+  margin-bottom: 3px;
 }
 
 .FormMessage {
@@ -68,6 +70,7 @@ button {
 .Textarea {
   resize: none;
   padding: 10px;
+  background-color: white;
 }
 
 .Button {
@@ -82,7 +85,6 @@ button {
   height: 35px;
   width: 100%;
 
-  background-color: white;
   color: var(--violet-11);
   box-shadow: 0 2px 10px var(--black-a7);
 }
@@ -94,7 +96,10 @@ button {
 }
 
 .todayBox {
-  background-color: white;
+background: repeating-linear-gradient(
+  white, white 50px,
+  #9198e5 51px, #9198e5 51px
+ );
   padding-top: 20px 20px 20px 20px;
   width: 95vw;
   max-width: 800px;
@@ -108,7 +113,6 @@ button {
 }
 
 .RadioGroupItem {
-  background-color: white;
   width: 25px;
   height: 25px;
   border-radius: 0%;
@@ -165,7 +169,6 @@ button {
 
 .SliderRange {
   position: absolute;
-  background-color: white;
   background-color: var(--violet-11);
   border-radius: 9999px;
   height: 100%;
@@ -175,7 +178,6 @@ button {
   display: block;
   width: 20px;
   height: 20px;
-  background-color: white;
   background-color: var(--violet-11);
   box-shadow: 0 2px 10px var(--black-11);
   border-radius: 10px;

@@ -9,6 +9,8 @@ body,main {
   width: 100vw;
   height: 100vh;
   background-image: linear-gradient(330deg, hsl(272, 53%, 50%) 0%, hsl(226, 68%, 56%) 100%);
+background-repeat: no-repeat;
+    background-attachment: fixed;
   display: flex;
   align-items: flex-start;
   justify-content: center;
