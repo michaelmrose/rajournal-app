@@ -72,7 +72,7 @@ async function handleSubmit(evt) {
       }));
 
       // Create life events associated with the journal entry
-      await sendRequest(`/api/journalEntries/${journalId}/lifeEvents`, 'POST', lifeEvents);
+      await sendRequest(`/api/journal/${journalId}/lifeEvents`, 'POST', lifeEvents);
       console.log('Life events created successfully');
 
       // Prepare the note data
@@ -85,7 +85,6 @@ async function handleSubmit(evt) {
       await sendRequest(`/api/users/${userId}/notes`, 'POST', note);
       console.log('Note created successfully');
 
-      // Reset the form state or navigate the user to a different page
 
     } else {
       console.log('Error creating journal entry');

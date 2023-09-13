@@ -23,8 +23,9 @@ async function createJournalEntryForUser(req, res) {
     try {
         const user = await User.findById(req.user._id);
         user.journalEntries.push(req.body);  
+        const newEntry = user.journalEntries[user.journalEntries.length - 1];
         await user.save();
-        res.status(201).json({});
+        res.status(201).json(newEntry);
     } catch (err) {
         res.status(500).json({ message: 'Server error', err });
     }
@@ -97,23 +98,24 @@ async function getEventsForJournalEntry(req, res) {
 
 // Create life event for a specific journal entry
 async function createEventForJournalEntry(req, res) {
+    console.log(`body is ${req.body}`)
     try {
         const user = await User.findById(req.user._id);
-        const journalEntry = user.journalEntries.id(req.params.journalEntryId);
+        const journalEntry = user.journalEntries.id(req.params.id);
 
         if (!journalEntry) {
             return res.status(404).json({ message: 'Journal entry not found' });
         }
 
-        const newLifeEvent = {
-            date: journalEntry.creationDate,
-            ...req.body  
-        };
-
-        user.lifeEvents.push(newLifeEvent);
+        req.body.forEach(evt=>{
+            const newLifeEvent = {date: journalEntry.creationDate, event: evt.event}
+            user.lifeEvents.push(newLifeEvent);
+        })
         await user.save();
 
-        res.status(201).json(newLifeEvent);
+        
+
+        res.status(201).json({});
     } catch (err) {
         res.status(500).json({ message: 'Server error', err });
     }
