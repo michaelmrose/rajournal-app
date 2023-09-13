@@ -1,0 +1,22 @@
+h2 {
+  font-size: 20px;
+  margin: 70px 0 10px 0
+}
+
+
+.journalEntries {
+background: repeating-linear-gradient(
+  white, white 50px,
+  #9198e5 51px, #9198e5 51px
+ );
+  padding-top: 20px 20px 20px 20px;
+  width: 95vw;
+  max-width: 800px;
+  margin: 10px;
+  border-radius: 8px;
+}
+.journalEntry {
+    width: 80vw;
+  max-width: 700px;
+
+}
