@@ -15,9 +15,9 @@ router.post('/login', usersCtrl.login);
 router.get('/check-token', ensureLoggedIn, usersCtrl.checkToken);
 
 // user related resources
-router.get("/:id/journalEntries", ensureLoggedIn, journalCtrl.getJournalEntriesForUser)
-router.post("/:id/journalEntries", ensureLoggedIn, journalCtrl.createJournalEntryForUser)
-router.get("/:id/notes", ensureLoggedIn, notesCtrl.getNotesForUser)
-router.post("/:id/notes", ensureLoggedIn, notesCtrl.createNoteForUser)
+router.get("/:id/journalEntries",  journalCtrl.getJournalEntriesForUser)
+router.post("/:id/journalEntries", journalCtrl.createJournalEntryForUser)
+router.get("/:id/notes",  notesCtrl.getNotesForUser)
+router.post("/:id/notes",  notesCtrl.createNoteForUser)
 
 module.exports = router;

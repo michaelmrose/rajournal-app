@@ -1,5 +1,4 @@
 const User = require('../../models/user');
-
 module.exports = {
     getEventsForJournalEntry,
     createEventForJournalEntry,
@@ -23,9 +22,9 @@ async function getJournalEntriesForUser(req, res) {
 async function createJournalEntryForUser(req, res) {
     try {
         const user = await User.findById(req.user._id);
-        user.journalEntries.push(req.body);  // assuming req.body contains the journal entry
+        user.journalEntries.push(req.body);  
         await user.save();
-        res.status(201).json(user.journalEntries);
+        res.status(201).json({});
     } catch (err) {
         res.status(500).json({ message: 'Server error', err });
     }

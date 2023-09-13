@@ -48,20 +48,18 @@ async function handleSubmit(evt) {
   // Prepare the journal entry data based on updated schema names
   const journalEntry = {
     creationDate: new Date(),
-    morningPainLevel: state.morningPainLevel,
-    morningStiffnessLevel: state.morningStiffnessLevel,
-    morningFatigueLevel: state.morningFatigueLevel,
-    dayPainLevel: state.dayPainLevel,
-    dayStiffnessLevel: state.dayStiffnessLevel,
-    dayFatigueLevel: state.dayFatigueLevel,
-    qualityOfSleep: state.qualityOfSleep,
-    hoursOfSleep: state.hoursOfSleep,
+    morningPainLevel: state.morningPainLevel[0],
+    morningStiffnessLevel: state.morningStiffnessLevel[0],
+    morningFatigueLevel: state.morningFatigueLevel[0],
+    dayPainLevel: state.dayPainLevel[0],
+    dayStiffnessLevel: state.dayStiffnessLevel[0],
+    dayFatigueLevel: state.dayFatigueLevel[0],
+    sleep: state.sleep,
+    hoursOfSleep: state.hoursOfSleep[0],
   };
   try {
     // Create the journal entry first
-    alert(`/api/users/${userId}`)
     const journalResponse = await sendRequest(`/api/users/${userId}/journalEntries`, 'POST', journalEntry);
-alert(journalResponse)
     if (journalResponse && journalResponse._id) {
       console.log('Journal entry created successfully');
       
