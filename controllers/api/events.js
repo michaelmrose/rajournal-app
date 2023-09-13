@@ -27,7 +27,7 @@ async function update(req, res) {
         if (!event) {
             return res.status(404).json({ message: 'Event not found' });
         }
-        event.set(req.body);  // assuming body contains the updated event
+        event.set(req.body);  
         await user.save();
         res.status(200).json(event);
     } catch (err) {

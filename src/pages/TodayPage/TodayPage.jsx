@@ -15,7 +15,7 @@ import ButtonRadioGroup from '../../components/ButtonRadioGroup/ButtonRadioGroup
 export default function TodayPage(props) {
   const [error, setError] = useState('');
   const [state, setState] = useState({
-    sleep: "OK",
+    qualityOfSleep: "OK",
     hoursOfSleep: [8],
     note: "",
     morningPainLevel: [5],
@@ -54,7 +54,7 @@ async function handleSubmit(evt) {
     dayPainLevel: state.dayPainLevel[0],
     dayStiffnessLevel: state.dayStiffnessLevel[0],
     dayFatigueLevel: state.dayFatigueLevel[0],
-    sleep: state.sleep,
+    qualityOfSleep: state.qualityOfSleep,
     hoursOfSleep: state.hoursOfSleep[0],
   };
   try {
@@ -113,7 +113,7 @@ async function handleSubmit(evt) {
             </Form.Message>
           </div>
           <Form.Control asChild>
-            <ButtonRadioGroup options={["Poorly", "OK", "Well"]} value={state.sleep} onChange={handleChange} />
+            <ButtonRadioGroup options={["Poorly", "OK", "Well"]} value={state.qualityOfSleep} onChange={handleChange} />
 
 
           </Form.Control>
