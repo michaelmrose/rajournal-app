@@ -331,7 +331,7 @@ p {
 
 .navItem {
   border: 2px black solid;
-  height: fit-content;
+  height: 8vh;
   padding-right: 15px;
   padding-left: 15px;
 }
